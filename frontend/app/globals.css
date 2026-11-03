@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/**
+ * 设计 token：来自产品经理提供的 DESIGN.md（Notion 风格：暖纸底 + 单点蓝 + 发丝边框）。
+ * 见 docs/设计参考/DESIGN-Notion风格.md 与《前端适配声明》§7。
+ * 中文用系统字体（Inter 不含中文字形；不引 Google 字体，国内构建不失败）。
+ */
+@theme {
+  /* 表面 */
+  --color-canvas: #f6f5f4;      /* 页面底色（暖纸；不要用纯白当页面底） */
+  --color-surface: #ffffff;     /* 卡片表面 */
+
+  /* 文字（同一黑色靠透明度分层） */
+  --color-ink: rgba(0, 0, 0, 0.95);
+  --color-ink-muted: #615d59;   /* 正文/次要（带暖调的灰） */
+  --color-ink-soft: rgba(0, 0, 0, 0.54);
+
+  /* 主色：全站唯一填充色 */
+  --color-primary: #0075de;
+  --color-primary-hover: #0068c6;
+  --color-sky-tint: #e6f3fe;
+
+  /* 强调（用于药丸标签与提示，不用于按钮） */
+  --color-marigold: #ffb110;
+  --color-marigold-tint: #fff4dc;
+  --color-saffron-ink: #8a5a00;
+  --color-coral: #f64932;
+  --color-vermillion: #e32d14;
+  --color-danger-tint: #fde8e6;
+  --color-midnight: #02093a;
+
+  /* 边框：发丝线，不用阴影 */
+  --color-hairline: rgba(0, 0, 0, 0.08);
+
+  /* 标记色（PRD F6） */
+  --color-mark-missing: #fff1c9;
+  --color-mark-critical: #fde0dc;
+
+  /* 形状 */
+  --radius-card: 12px;
+  --radius-control: 8px;
+  --radius-small: 4px;
+
+  --font-sans: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans CJK SC", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.43;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 内容区：最大 1440px（DESIGN.md 的版心） */
+.page-shell {
+  margin-inline: auto;
+  max-width: 1440px;
+  padding-inline: 24px;
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 400px) {
+  .page-shell {
+    padding-inline: 16px;
+  }
+}
+
+/* 标题：大字号才用负字距 */
+.display {
+  font-size: 22px;
+  line-height: 1.27;
+  letter-spacing: -0.242px;
+  font-weight: 600;
+}
+
+/* 焦点可见（无障碍底线） */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* 动效 200ms（DESIGN.md） */
+.transition-ui {
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
